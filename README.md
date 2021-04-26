@@ -94,7 +94,6 @@ cataas.getCats(['cute'])
 import Cataas from 'cataas-api';
 
 const cataas = new Cataas()
-cataas.options.Filter = "pixel"
 cataas.encode()
 cataas.getCats(['cute'], { Limit: 5 })
     .then(cats => {
