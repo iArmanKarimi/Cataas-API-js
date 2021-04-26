@@ -43,7 +43,7 @@ interface CatByTag {
     created_at: string
 }
 
-class Cataas {
+declare class Cataas {
     public options: Options
 
     constructor(options?: Options)
@@ -51,7 +51,7 @@ class Cataas {
     public encode(): URL
     public encodeById(id: string): URL
     public get(): Promise<IncomingMessage>
-    public download(path: string): Promise<bool>
+    public download(path: string): Promise<Boolean>
     public getAllTags(): Promise<string[]>
     public getCats(tags: string[], options?: GetCatsOptions): Promise<CatByTag[]>
 }
