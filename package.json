@@ -1,11 +1,11 @@
 {
   "name": "cataas-api",
-  "version": "1.0.1",
+  "version": "1.0.41",
   "description": "Cat as a service API wrapper for javascirpt",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha tests/index.js"
   },
   "repository": {
     "type": "git",
@@ -29,5 +29,8 @@
   "dependencies": {
     "fs": "0.0.1-security",
     "http": "0.0.1-security"
+  },
+  "devDependencies": {
+    "mocha": "^8.3.2"
   }
 }
