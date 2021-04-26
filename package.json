@@ -1,0 +1,33 @@
+{
+  "name": "CataasAPI",
+  "version": "1.0.0",
+  "description": "Cat as a service API wrapper for javascirpt",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iArmann/Cataas-API-js.git"
+  },
+  "keywords": [
+    "Cataas",
+    "Cataas API",
+    "Cataas API Wrapper",
+    "Cat as a service",
+    "Cat as a service API",
+    "Cat as a service API wrapper",
+    "API wrapper"
+  ],
+  "author": "Arman Karimi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iArmann/Cataas-API-js/issues"
+  },
+  "homepage": "https://github.com/iArmann/Cataas-API-js#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security"
+  }
+}
