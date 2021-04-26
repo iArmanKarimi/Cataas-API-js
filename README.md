@@ -4,11 +4,17 @@ Cat as a service API wrapper for Javascript and Typescript.
 
 > Cat as a service is a REST API to spread peace and love (or not) thanks to cats.
 
+## Install
+
+`npm install --save cataas-api`
+
 ## Examples
 
 `constructor()`
 
 ```JS
+var Cataas = require('cataas-api')
+var cataas = new Cataas()
 var gif = {
     Gif: true,
     Size: 'md',
@@ -21,28 +27,25 @@ var resized = {
     Width: 300,
     Height: 200,
 }
-var cataas = new Cataas(gif)
+cataas.options = gif
 cataas.options = resized
 ```
 
 `encode()`
 
 ```JS
-var cataas = new Cataas()
 var encodedUrl = cataas.encode()
 ```
 
 `encodeById(id)`
 
 ```JS
-var cataas = new Cataas()
 var encodedUrl = cataas.encodeById('[ID]')
 ```
 
 `async get()`
 
 ```JS
-var cataas = new Cataas()
 cataas.encode()
 cataas.get()
     .then(readable => {
@@ -55,7 +58,6 @@ cataas.get()
 `async download(path)`
 
 ```JS
-var cataas = new Cataas()
 cataas.encode()
 cataas.download('cat.png')
     .then(successful => {
@@ -69,7 +71,6 @@ cataas.download('cat.png')
 `async getAllTags()`
 
 ```JS
-const cataas = new Cataas()
 cataas.encode()
 cataas.getAllTags()
     .then(tags => {
@@ -81,14 +82,30 @@ cataas.getAllTags()
 `async getCats(tags, options)`
 
 ```JS
-var cataas = new Cataas()
 cataas.encode()
 cataas.getCats(['cute'])
     .then(cats => console.log('Results length:', cats.length))
     .catch(e => console.error(e))
 ```
 
-#### Tips:
+### Typescript example
+
+```TS
+import Cataas from 'cataas-api';
+
+const cataas = new Cataas()
+cataas.options.Filter = "pixel"
+cataas.encode()
+cataas.getCats(['cute'], { Limit: 5 })
+    .then(cats => {
+        cats.forEach(cat => {
+            console.log(`${cat.id}: ${cat.tags}`))
+        }
+    })
+    .catch(e => console.error(e))
+```
+
+#### Tips
 
 + After setting `Gif: true` in options, `Tag` is ignored
 + Don't forget to `encode()` | `encodeById` before `get()` | `download()`
