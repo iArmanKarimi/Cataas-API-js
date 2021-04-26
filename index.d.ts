@@ -16,25 +16,25 @@ type Filter =
 
 interface Options {
     Gif: boolean
-    Tag: string
-    Text: string
-    Width: number
-    Height: number
-    TextSize: number
-    TextColor: string
+    Tag?: string
+    Text?: string
+    Width?: number
+    Height?: number
+    TextSize?: number
+    TextColor?: string
     /** 
     + sm : small
     + md : medium
     + sq : square
     + or : original
     */
-    Size: Size
-    Filter: Filter
+    Size?: Size
+    Filter?: Filter
 }
 
 interface GetCatsOptions {
-    Skip: number
-    Limit: number
+    Skip?: number
+    Limit?: number
 }
 
 interface CatByTag {
