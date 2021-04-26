@@ -108,3 +108,7 @@ cataas.getCats(['cute'], { Limit: 5 })
 
 + After setting `Gif: true` in options, `Tag` is ignored
 + Don't forget to `encode()` | `encodeById` before `get()` | `download()`
+
+## Reference
+
+[API website](https://cataas.com/)
