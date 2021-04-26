@@ -36,7 +36,7 @@ class Cataas {
 	 */
 	encode() {
 		url.pathname = paths.cat
-		if (this.options.Gif) {
+		if (this.options.Gif === true) {
 			url.pathname += `/gif`
 		}
 		if (this.options.Tag) {

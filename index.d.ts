@@ -15,7 +15,7 @@ type Filter =
     | "negative"
 
 interface Options {
-    Gif: boolean
+    Gif?: boolean
     Tag?: string
     Text?: string
     Width?: number
