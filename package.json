@@ -1,6 +1,6 @@
 {
   "name": "cataas-api",
-  "version": "1.0.41",
+  "version": "1.1.2",
   "description": "Cat as a service API wrapper for javascirpt",
   "main": "index.js",
   "types": "index.d.ts",
