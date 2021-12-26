@@ -69,6 +69,7 @@ class Cataas {
 	 * @returns encoded url
 	 */
 	encodeById(id) {
+		if (!id) throw new Error('Argument undefined')
 		url.pathname = paths.cat + "/" + id
 		return url
 	}
@@ -115,6 +116,7 @@ class Cataas {
 	 */
 	async download(path) {
 		return new Promise((resolve, reject) => {
+			if (!path) throw new Error('Argument undefined')
 			const file = fs.createWriteStream(path)
 			https.get(url, res => {
 				if (res.statusCode !== 200) {
