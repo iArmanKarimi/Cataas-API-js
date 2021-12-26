@@ -4,12 +4,10 @@
   "description": "Cat as a service API wrapper for javascirpt",
   "main": "index.js",
   "types": "index.d.ts",
-  "scripts": {
-    "test": "./node_modules/.bin/mocha tests/index.js"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iArmann/Cataas-API-js.git"
+    "url": "git+https://github.com/iArmann/Cataas-API-js/tree/url-encoder"
   },
   "keywords": [
     "Cataas",
@@ -25,12 +23,7 @@
   "bugs": {
     "url": "https://github.com/iArmann/Cataas-API-js/issues"
   },
-  "homepage": "https://github.com/iArmann/Cataas-API-js#readme",
-  "dependencies": {
-    "fs": "0.0.1-security",
-    "http": "0.0.1-security"
-  },
-  "devDependencies": {
-    "mocha": "^8.3.2"
-  }
+  "homepage": "https://github.com/iArmann/Cataas-API-js/tree/url-encoder#readme",
+  "dependencies": {},
+  "devDependencies": {}
 }

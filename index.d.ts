@@ -1,5 +1,3 @@
-import { IncomingMessage } from "http"
-
 type Size =
     | "or"
     | "sq"
@@ -32,17 +30,6 @@ interface Options {
     Filter?: Filter
 }
 
-interface GetCatsOptions {
-    Skip?: number
-    Limit?: number
-}
-
-interface CatByTag {
-    id: string
-    tags: string
-    created_at: string
-}
-
 declare class Cataas {
     public options: Options
 
@@ -50,10 +37,6 @@ declare class Cataas {
 
     public encode(): URL
     public encodeById(id: string): URL
-    public get(): Promise<IncomingMessage>
-    public download(path: string): Promise<Boolean>
-    public getAllTags(): Promise<string[]>
-    public getCats(tags: string[], options?: GetCatsOptions): Promise<CatByTag[]>
 }
 
 export = Cataas
