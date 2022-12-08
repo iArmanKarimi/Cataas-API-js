@@ -8,6 +8,8 @@ Cat as a service API wrapper for Javascript and Typescript.
 
 `npm install --save cataas-api`
 
+##### Tip: If you only the url, refer to [url-encoder](https://github.com/iArmanKarimi/Cataas-API-js/tree/url-encoder) branch.
+
 ## Examples
 
 `constructor()`
