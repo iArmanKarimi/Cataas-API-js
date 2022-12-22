@@ -114,3 +114,6 @@ cataas.getCats(['cute'], { Limit: 5 })
 ## Reference
 
 [API website](https://cataas.com/)
+
+## License
+[MIT](https://github.com/iArmanKarimi/Cataas-API-js/blob/main/LICENSE)
