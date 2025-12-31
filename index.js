@@ -26,13 +26,12 @@ class Cataas {
 		this.options = options ? options : { Gif: false }
 	}
 
-	/** Encodes the base url with `this.Options`
-	@returns encoded url
-	@example
-	```
-	var cataas = new Cataas()
-	var encodedUrl = cataas.encode()
-	```
+	/**
+	 * Encodes the base url with current options.
+	 * @returns {URL} Encoded URL object
+	 * @example
+	 * const cataas = new Cataas({ Gif: true, Tag: 'cute' });
+	 * const encodedUrl = cataas.encode();
 	 */
 	encode() {
 		url.pathname = paths.cat
@@ -64,9 +63,14 @@ class Cataas {
 		return url
 	}
 
-	/** Encodes the base with the given id
-	 * @param {String} id id of cat image
-	 * @returns encoded url
+	/**
+	 * Encodes the base URL with the given cat image ID.
+	 * @param {string} id - ID of the cat image
+	 * @returns {URL} Encoded URL object
+	 * @throws {Error} If id is undefined
+	 * @example
+	 * const cataas = new Cataas();
+	 * const url = cataas.encodeById('abc123');
 	 */
 	encodeById(id) {
 		if (!id) throw new Error('Argument undefined')
@@ -74,18 +78,17 @@ class Cataas {
 		return url
 	}
 
-	/** sends get request then returns the response
-	@example
-	``` 
-	var cataas = new Cataas()
-	cataas.encode()
-	cataas.get()
-		.then(readable => {
-			const stream = new fs.createWriteStream('cat.png')
-			readable.pipe(stream)
-		})
-		.catch(e => console.error(e))
-	```
+	/**
+	 * Sends a GET request to the encoded URL and returns the response stream.
+	 * @returns {Promise<IncomingMessage>} Response stream
+	 * @throws {Error} If request fails or status code is not 200
+	 * @example
+	 * const cataas = new Cataas();
+	 * cataas.encode();
+	 * cataas.get().then(stream => {
+	 *   const file = fs.createWriteStream('cat.png');
+	 *   stream.pipe(file);
+	 * });
 	 */
 	async get() {
 		return new Promise((resolve, reject) => {
@@ -98,21 +101,17 @@ class Cataas {
 		})
 	}
 
-	/** Download image
-	@param {String} path path to save image file
-	@returns {Boolean} successful
-	@example 
-	```
-	var cataas = new Cataas()
-	cataas.encode()
-	cataas.download('cat.png')
-		.then(successful => {
-			if (successful) {
-				console.log('Downloaded file successfully')
-			}
-		})
-		.catch(e => console.error(e))
-	```	
+	/**
+	 * Downloads the image from the encoded URL and saves it to the specified path.
+	 * @param {string} path - Path to save the image file
+	 * @returns {Promise<boolean>} True if successful
+	 * @throws {Error} If path is undefined or request fails
+	 * @example
+	 * const cataas = new Cataas();
+	 * cataas.encode();
+	 * cataas.download('cat.png').then(success => {
+	 *   if (success) console.log('Downloaded file successfully');
+	 * });
 	 */
 	async download(path) {
 		return new Promise((resolve, reject) => {
@@ -132,15 +131,15 @@ class Cataas {
 		})
 	}
 
-	/** get all tags
-	@example
-	var cataas = new Cataas()
-	cataas.encode()
-	cataas.getAllTags()
-		.then(tags => {
-			console.log('Tags length:', tags.length)
-		})
-		.catch(e => console.error(e))
+	/**
+	 * Retrieves all available tags from the Cataas API.
+	 * @returns {Promise<string[]>} Array of tag strings
+	 * @throws {Error} If request fails
+	 * @example
+	 * const cataas = new Cataas();
+	 * cataas.getAllTags().then(tags => {
+	 *   console.log('Tags:', tags);
+	 * });
 	 */
 	async getAllTags() {
 		return new Promise((resolve, reject) => {
@@ -154,18 +153,17 @@ class Cataas {
 		})
 	}
 
-	/** get cats which include the given tag(s)
-	@param {String[]} tags
-	@param {{
-		Skip: number
-		Limit: number
-	}} options get cats options
-	@example
-	var cataas = new Cataas()
-	cataas.encode()
-	cataas.getCats(['cute'])
-		.then(cats => console.log('Results length:', cats.length))
-		.catch(e => console.error(e))
+	/**
+	 * Retrieves cats that include the given tag(s).
+	 * @param {string[]} tags - Array of tags to filter cats
+	 * @param {{Skip?: number, Limit?: number}} [options] - Options for pagination
+	 * @returns {Promise<Object[]>} Array of cat objects
+	 * @throws {Error} If tags are undefined or request fails
+	 * @example
+	 * const cataas = new Cataas();
+	 * cataas.getCats(['cute'], { Limit: 10 }).then(cats => {
+	 *   console.log('Cats:', cats);
+	 * });
 	 */
 	async getCats(tags, options) {
 		return new Promise((resolve, reject) => {
