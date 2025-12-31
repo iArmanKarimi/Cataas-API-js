@@ -1,12 +1,12 @@
-const fs = require('fs');
-const https = require('https');
+const fs = require("fs");
+const https = require("https");
 
-const url = new URL("https://cataas.com")
+const url = new URL("https://cataas.com");
 const paths = {
 	cat: "cat",
 	cats: "api/cats",
 	allTags: "api/tags",
-}
+};
 
 class Cataas {
 	/**
@@ -23,7 +23,7 @@ class Cataas {
 	 * }} options it is used in requests and url encoding
 	 */
 	constructor(options) {
-		this.options = options ? options : { Gif: false }
+		this.options = options ? options : { Gif: false };
 	}
 
 	/**
@@ -34,33 +34,33 @@ class Cataas {
 	 * const encodedUrl = cataas.encode();
 	 */
 	encode() {
-		url.pathname = paths.cat
+		url.pathname = paths.cat;
 		if (this.options.Gif === true) {
-			url.pathname += `/gif`
+			url.pathname += `/gif`;
 		}
 		if (this.options.Tag) {
-			url.pathname += `/${this.options.Tag}`
+			url.pathname += `/${this.options.Tag}`;
 		}
 		if (this.options.Text) {
-			url.pathname += `/says/${this.options.Text}`
-			url.searchParams.set('size', this.options.TextSize)
+			url.pathname += `/says/${this.options.Text}`;
+			url.searchParams.set("size", this.options.TextSize);
 			if (this.options.TextColor) {
-				url.searchParams.set('color', this.options.TextColor)
+				url.searchParams.set("color", this.options.TextColor);
 			}
 		}
 		if (this.options.Size) {
-			url.searchParams.set('type', this.options.Size)
+			url.searchParams.set("type", this.options.Size);
 		}
 		if (this.options.Filter) {
-			url.searchParams.set('filter', this.options.Filter)
+			url.searchParams.set("filter", this.options.Filter);
 		}
 		if (this.options.Width) {
-			url.searchParams.set('width', this.options.Width)
+			url.searchParams.set("width", this.options.Width);
 		}
 		if (this.options.Height) {
-			url.searchParams.set('height', this.options.Height)
+			url.searchParams.set("height", this.options.Height);
 		}
-		return url
+		return url;
 	}
 
 	/**
@@ -73,9 +73,9 @@ class Cataas {
 	 * const url = cataas.encodeById('abc123');
 	 */
 	encodeById(id) {
-		if (!id) throw new Error('Argument undefined')
-		url.pathname = paths.cat + "/" + id
-		return url
+		if (!id) throw new Error("Argument undefined");
+		url.pathname = paths.cat + "/" + id;
+		return url;
 	}
 
 	/**
@@ -92,13 +92,15 @@ class Cataas {
 	 */
 	async get() {
 		return new Promise((resolve, reject) => {
-			https.get(url, async res => {
-				if (res.statusCode !== 200) {
-					reject(new Error(`Request Failed.\nStatus Code: ${statusCode}`))
-				}
-				resolve(res)
-			}).on('error', reject)
-		})
+			https
+				.get(url, async (res) => {
+					if (res.statusCode !== 200) {
+						reject(new Error(`Request Failed.\nStatus Code: ${statusCode}`));
+					}
+					resolve(res);
+				})
+				.on("error", reject);
+		});
 	}
 
 	/**
@@ -115,20 +117,23 @@ class Cataas {
 	 */
 	async download(path) {
 		return new Promise((resolve, reject) => {
-			if (!path) throw new Error('Argument undefined')
-			const file = fs.createWriteStream(path)
-			https.get(url, res => {
-				if (res.statusCode !== 200) {
-					reject(new Error(`Request Failed.\nStatus Code: ${statusCode}`))
-				}
-				res.pipe(file)
-					.on('finish', () => {
-						file.close()
-						resolve(true)
-					})
-					.on('error', reject)
-			}).on('error', reject)
-		})
+			if (!path) throw new Error("Argument undefined");
+			const file = fs.createWriteStream(path);
+			https
+				.get(url, (res) => {
+					if (res.statusCode !== 200) {
+						reject(new Error(`Request Failed.\nStatus Code: ${statusCode}`));
+					}
+					res
+						.pipe(file)
+						.on("finish", () => {
+							file.close();
+							resolve(true);
+						})
+						.on("error", reject);
+				})
+				.on("error", reject);
+		});
 	}
 
 	/**
@@ -143,14 +148,14 @@ class Cataas {
 	 */
 	async getAllTags() {
 		return new Promise((resolve, reject) => {
-			url.pathname = paths.allTags
+			url.pathname = paths.allTags;
 			this.get()
-				.then(stream => stream.read())
-				.then(buffer => buffer.toString())
+				.then((stream) => stream.read())
+				.then((buffer) => buffer.toString())
 				.then(JSON.parse)
 				.then(resolve)
-				.catch(reject)
-		})
+				.catch(reject);
+		});
 	}
 
 	/**
@@ -167,25 +172,25 @@ class Cataas {
 	 */
 	async getCats(tags, options) {
 		return new Promise((resolve, reject) => {
-			if (!tags) throw new Error('Argument undefined')
+			if (!tags) throw new Error("Argument undefined");
 			if (options) {
 				if (options.Skip) {
-					url.searchParams.set('skip', options.Skip)
+					url.searchParams.set("skip", options.Skip);
 				}
 				if (options.Limit) {
-					url.searchParams.set('limit', options.Limit)
+					url.searchParams.set("limit", options.Limit);
 				}
 			}
-			url.pathname = paths.cats
-			url.searchParams.set('tags', tags.join(','))
+			url.pathname = paths.cats;
+			url.searchParams.set("tags", tags.join(","));
 			this.get()
-				.then(stream => stream.read())
-				.then(buffer => buffer.toString())
+				.then((stream) => stream.read())
+				.then((buffer) => buffer.toString())
 				.then(JSON.parse)
 				.then(resolve)
-				.catch(reject)
-		})
+				.catch(reject);
+		});
 	}
 }
 
-module.exports = Cataas
+module.exports = Cataas;
