@@ -4,6 +4,24 @@ const { describe } = require('mocha');
 const { unlinkSync } = require('fs');
 
 describe('Cataas', () => {
+        describe('Edge cases and error handling', () => {
+            it('encodeById() throws on undefined id', () => {
+                const c = new Cataas();
+                assert.throws(() => c.encodeById(), /Argument undefined/);
+            });
+
+            it('download() throws on undefined path', async () => {
+                const c = new Cataas();
+                c.encode();
+                await assert.rejects(() => c.download(), /Argument undefined/);
+            });
+
+            it('getCats() throws on undefined tags', async () => {
+                const c = new Cataas();
+                c.encode();
+                await assert.rejects(() => c.getCats(), /Argument undefined/);
+            });
+        });
     describe('constructor()', () => {
         describe('options.Gif == false by default', () => {
             it('with options = undefined', () => {
