@@ -5,7 +5,9 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "test": "mocha tests/index.js"
+    "test": "mocha tests/index.js",
+    "lint": "eslint .",
+    "format": "prettier --write ."
   },
   "repository": {
     "type": "git",
