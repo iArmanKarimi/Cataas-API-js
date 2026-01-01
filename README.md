@@ -1,6 +1,7 @@
 <p align="center">
     <img src="https://img.shields.io/npm/v/cataas-api?style=flat-square" alt="npm version" />
     <img src="https://img.shields.io/github/license/iArmanKarimi/Cataas-API-js?style=flat-square" alt="license" />
+    <img src="https://img.shields.io/badge/coverage-nyc-brightgreen?style=flat-square" alt="coverage" />
 </p>
 
 # Cataas API
@@ -33,16 +34,16 @@ npm install --save cataas-api
 const Cataas = require("cataas-api");
 const cataas = new Cataas();
 const gif = {
-	Gif: true,
-	Size: "md",
-	Text: "hey dude",
-	Filter: "paint",
-	TextSize: 35,
-	TextColor: "LightBlue",
+  Gif: true,
+  Size: "md",
+  Text: "hey dude",
+  Filter: "paint",
+  TextSize: 35,
+  TextColor: "LightBlue",
 };
 const resized = {
-	Width: 300,
-	Height: 200,
+  Width: 300,
+  Height: 200,
 };
 cataas.options = gif;
 cataas.options = resized;
@@ -65,12 +66,12 @@ const encodedUrl = cataas.encodeById("[ID]");
 ```js
 cataas.encode();
 cataas
-	.get()
-	.then((readable) => {
-		const stream = new fs.createWriteStream("cat.png");
-		readable.pipe(stream);
-	})
-	.catch((e) => console.error(e));
+  .get()
+  .then((readable) => {
+    const stream = new fs.createWriteStream("cat.png");
+    readable.pipe(stream);
+  })
+  .catch((e) => console.error(e));
 ```
 
 ### async download(path)
@@ -78,13 +79,13 @@ cataas
 ```js
 cataas.encode();
 cataas
-	.download("cat.png")
-	.then((successful) => {
-		if (successful) {
-			console.log("Downloaded file successfully");
-		}
-	})
-	.catch((e) => console.error(e));
+  .download("cat.png")
+  .then((successful) => {
+    if (successful) {
+      console.log("Downloaded file successfully");
+    }
+  })
+  .catch((e) => console.error(e));
 ```
 
 ### async getAllTags()
@@ -92,11 +93,11 @@ cataas
 ```js
 cataas.encode();
 cataas
-	.getAllTags()
-	.then((tags) => {
-		console.log("Tags length:", tags.length);
-	})
-	.catch((e) => console.error(e));
+  .getAllTags()
+  .then((tags) => {
+    console.log("Tags length:", tags.length);
+  })
+  .catch((e) => console.error(e));
 ```
 
 ### async getCats(tags, options)
@@ -104,9 +105,9 @@ cataas
 ```js
 cataas.encode();
 cataas
-	.getCats(["cute"])
-	.then((cats) => console.log("Results length:", cats.length))
-	.catch((e) => console.error(e));
+  .getCats(["cute"])
+  .then((cats) => console.log("Results length:", cats.length))
+  .catch((e) => console.error(e));
 ```
 
 ### TypeScript Example
@@ -117,13 +118,13 @@ import Cataas from "cataas-api";
 const cataas = new Cataas();
 cataas.encode();
 cataas
-	.getCats(["cute"], { Limit: 5 })
-	.then((cats) => {
-		cats.forEach((cat) => {
-			console.log(`${cat.id}: ${cat.tags}`);
-		});
-	})
-	.catch((e) => console.error(e));
+  .getCats(["cute"], { Limit: 5 })
+  .then((cats) => {
+    cats.forEach((cat) => {
+      console.log(`${cat.id}: ${cat.tags}`);
+    });
+  })
+  .catch((e) => console.error(e));
 ```
 
 ## API Reference
